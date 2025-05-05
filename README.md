@@ -2,9 +2,9 @@
 
 Usage:  python app.py <b>your github profile link</b>
 
-Script scraping github page and save html files of followers and following to cache folder.
-Finding usernames in both types and return following not in followers lists.
+Script scraping Github profile page and save html files of followers and following to cache folder.
+Finding usernames in both types and return <b>following</b> not in <b>followers</b> lists.
 
-For fresh scraping  you have to remove files in cache folder
+For fresh scraping  you have to remove <b>cache</b> folder
 
 Enjoy...

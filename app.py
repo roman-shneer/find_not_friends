@@ -7,12 +7,15 @@ import time
 
 
 class find_not_friends:
+    cache_folder = "cache"
     def __init__(self, url):
         self.url = url
+        if os.path.isdir(self.cache_folder) is False:
+            os.mkdir(self.cache_folder)
 
     def get_html(self,page, url):
 
-        file_name="cache/"+str(page)+".html"
+        file_name = self.cache_folder + "/" + str(page) + ".html"
         if os.path.isfile(file_name) is True:    
             print(file_name+" skipped")
             with open(file_name, "r") as f:
@@ -42,7 +45,7 @@ class find_not_friends:
             self.find_pages(type, page + 1)
 
     def extract_members_from_files(self, type):
-        mypath = "cache/"
+        mypath = self.cache_folder + "/"
         files = [
             mypath+f
             for f in listdir(mypath)
@@ -72,6 +75,9 @@ FU.find_pages("following", 1)
 followers = FU.extract_members_from_files("followers")
 following = FU.extract_members_from_files("following")
 not_following=FU.compare_members(followers, following)
-print("You are follow users that not following you")
-for user in not_following:
-    print(user)
+if len(not_following) == 0:
+    print("All your following in followers list")
+else:
+    print("You are follow users that not following you")
+    for user in not_following:
+        print(user)
